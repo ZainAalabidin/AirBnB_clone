@@ -29,7 +29,8 @@
     width: 25%;
     position: relative;
     display: inline-block;
-    top: 0%;
+    top: 0;
+    justify-content: center;
     flex-direction: column;
 }
 .locations {
