@@ -5,11 +5,13 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
-    """ my BaseModel class """
+    """my BaseModel class"""
+
     def __init__(self, *args, **kwargs):
-        """ initialized instance attributes.
-        
+        """initialized instance attributes.
+
         Args:
             - args: list of arguments (unused).
             - kwargs: key/value pairs of attributes.
@@ -30,23 +32,20 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """ Return official string """
+        """Return official string"""
+        type_name = type(self).__name__
+        return "[{}] ({}) {}".format(type_name, self.id, self.__dict__)
 
-        return ("[{}] ({}) {}".format(type(self).__name__, self.id, self.__dict__))
-    
     def save(self):
-        """ updates the public instance attribute """
+        """updates the public instance attribute"""
 
         self.updated_at = datetime.now()
         models.storage.save()
 
-    def class_name(self):
-        return self.__class__.__name__
-    
     def to_dict(self):
         """Converts instance attributes to dictionary format."""
         my_dict = self.__dict__.copy()
-        my_dict['__class__'] = type(self).__name__  # Convert class object to class name
-        my_dict['created_at'] = my_dict['created_at'].isoformat()
-        my_dict['updated_at'] = my_dict['updated_at'].isoformat()
+        my_dict["__class__"] = type(self).__name__
+        my_dict["created_at"] = my_dict["created_at"].isoformat()
+        my_dict["updated_at"] = my_dict["updated_at"].isoformat()
         return my_dict

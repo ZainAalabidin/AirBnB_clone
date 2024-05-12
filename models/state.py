@@ -5,9 +5,10 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """ state class that inheret from BaseModel 
-    
+    """state class that inheret from BaseModel
+
     Attributes:
         name (str)- empty string
     """
+
     name = ""
